@@ -31,6 +31,10 @@ namespace introduceDotnetCore.Controllers
         [HttpPost]
         public IActionResult Invite(UserResponseModel model)
         {
+            if (ModelState.IsValid)
+            {
+                return View("Thanks");
+            }
 
             return View();
         }

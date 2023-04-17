@@ -16,6 +16,8 @@ var app = builder.Build();
  * 3. geçemezse 403-404 döndür.
  */
 
+app.UseStaticFiles();
+
 app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 //app.MapGet("/", () => "Merhaba Dünya!");
 
