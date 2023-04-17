@@ -1,7 +1,15 @@
+﻿using eshop.Application;
+using eshop.Infrastructure.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Eğer herhangi bir sınıf, IProductService interface'ini implemente eden bir nesne talep ediyorsa; ProductService instance'ini kullan:
+//Eğer bir arabaya lastik gerekiyorsa Bridgestone kullan.
+
+builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IProductRepository, FakeProductRepository>();
 
 var app = builder.Build();
 
