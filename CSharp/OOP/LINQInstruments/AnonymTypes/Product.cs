@@ -3,12 +3,13 @@
     public class Product
     {
         public string Name { get; set; }
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
         public string Description { get; set; }
         public double Rating { get; set; }
         public int Stock { get; set; }
 
+        // public var Bilmemne { get; set; }
 
     }
 
