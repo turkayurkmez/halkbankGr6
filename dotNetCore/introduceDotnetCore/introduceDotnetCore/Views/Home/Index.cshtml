@@ -1,0 +1,39 @@
+﻿
+@model IEnumerable<Product>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Burası Home/Index</h1>
+    <p>Hoşgeldin @ViewBag.Name</p>
+    @if (ViewBag.Hour > 12)
+    {
+        <p>İyi günler</p>
+    }
+    else
+    {
+        <p>Günaydın</p>
+    }
+   @* <ul>
+        @foreach (dynamic item in ViewBag.Products)
+        {
+            <li>@item.Name (@item.Price)</li>
+        }
+    </ul>*@
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Name (@item.Price TL) </li>
+        }
+    </ul>
+    <a asp-action="Invite" asp-controller="Home"> Tıklayınız.</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿@model UserResponseModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Invite</title>
+</head>
+<body>
+    <form method="post">
+        <input asp-for="Name" placeholder="Adınız" /> <br />
+        <input asp-for="LastName" placeholder="Soyadınız" /> <br />
+        <input asp-for="Email" placeholder="E-posta" /> <br />
+        <button type="submit">Gönder</button>
+    </form>
+</body>
+</html>
