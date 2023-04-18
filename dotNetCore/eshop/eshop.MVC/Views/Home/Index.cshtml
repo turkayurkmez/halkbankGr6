@@ -11,7 +11,30 @@
     @foreach (var product in Model)
     {
         <div class="col-4">
-           <partial name="_productCard" model="product"></partial>
+            <partial name="_productCard" model="product"></partial>
         </div>
     }
 </div>
+
+@section Scripts{
+    
+    <script>
+        $(document).ready(function(){
+            $('.basket').on('click',function(){
+
+                let id = $(this).data('id');
+                $.ajax({
+                    url: '/ShoppingCart/AddToCart/'+id,
+                    method:'GET',
+                    success: function(data){
+                        alert(data.message);
+                    },
+                    error: function(err){
+                        console.log(err);
+                    } 
+                });
+            
+            });
+        });
+    </script>
+}

@@ -10,6 +10,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IProductRepository, FakeProductRepository>();
+builder.Services.AddTransient<ICategoryRepository, FakeCategoryRepository>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
+
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -25,8 +29,15 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
+
+
+app.MapControllerRoute(
+    name: "categoryRoute",
+    pattern: "Kategoriler/{categoryId?}",
+    defaults: new { controller = "Home", action = "Index" });
 
 app.MapControllerRoute(
     name: "default",

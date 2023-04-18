@@ -9,7 +9,7 @@ namespace eshop.Infrastructure.Repositories
         void Delete(int id);
 
         IList<T> GetAll();
-        IList<T> Get(int id);
+        T Get(int id);
 
 
     }
