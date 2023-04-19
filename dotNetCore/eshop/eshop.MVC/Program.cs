@@ -1,5 +1,7 @@
 ﻿using eshop.Application;
+using eshop.Infrastructure.Data;
 using eshop.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddTransient<IProductRepository, FakeProductRepository>();
 builder.Services.AddTransient<ICategoryRepository, FakeCategoryRepository>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 
+var connectionString = builder.Configuration.GetConnectionString("db");
+builder.Services.AddDbContext<HalkEshopDbContext>(option => option.UseSqlServer(connectionString));
 builder.Services.AddSession();
 
 var app = builder.Build();

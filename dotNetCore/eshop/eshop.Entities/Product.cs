@@ -1,8 +1,11 @@
-﻿namespace eshop.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace eshop.Entities
 {
     public class Product : IEntity
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Boş bırakmayınız....")]
         public string Name { get; set; }
         public string? Description { get; set; }
         public double? Price { get; set; }
