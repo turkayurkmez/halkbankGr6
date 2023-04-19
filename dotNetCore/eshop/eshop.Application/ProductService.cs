@@ -15,6 +15,11 @@ namespace eshop.Application
             this.productRepository = productRepository;
         }
 
+        public void CreateNewProduct(Product newProduct)
+        {
+            productRepository.Add(newProduct);
+        }
+
         public Product GetProduct(int id)
         {
             return productRepository.Get(id);
@@ -29,6 +34,11 @@ namespace eshop.Application
         {
             return productRepository.GetProductsByCategoryId(value);
 
+        }
+
+        public void UpdateExistingProduct(Product product)
+        {
+            productRepository.Update(product);
         }
     }
 }

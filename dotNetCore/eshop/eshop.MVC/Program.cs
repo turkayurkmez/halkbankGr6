@@ -1,6 +1,5 @@
-﻿using eshop.Application;
-using eshop.Infrastructure.Data;
-using eshop.Infrastructure.Repositories;
+﻿using eshop.MVC.Extensions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,13 +9,24 @@ builder.Services.AddControllersWithViews();
 //Eğer herhangi bir sınıf, IProductService interface'ini implemente eden bir nesne talep ediyorsa; ProductService instance'ini kullan:
 //Eğer bir arabaya lastik gerekiyorsa Bridgestone kullan.
 
-builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddTransient<IProductRepository, FakeProductRepository>();
-builder.Services.AddTransient<ICategoryRepository, FakeCategoryRepository>();
-builder.Services.AddTransient<ICategoryService, CategoryService>();
+
 
 var connectionString = builder.Configuration.GetConnectionString("db");
-builder.Services.AddDbContext<HalkEshopDbContext>(option => option.UseSqlServer(connectionString));
+
+builder.Services.AddNecessaryInstances(connectionString);
+
+
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+{
+    option.LoginPath = "/Users/Login";
+    option.ReturnUrlParameter = "nereye";
+    option.AccessDeniedPath = "/Users/AccessDenied";
+});
+
+
+
+
 builder.Services.AddSession();
 
 var app = builder.Build();
@@ -34,7 +44,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSession();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 
