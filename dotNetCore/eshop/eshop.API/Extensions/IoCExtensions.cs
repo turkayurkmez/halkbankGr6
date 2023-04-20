@@ -3,7 +3,7 @@ using eshop.Infrastructure.Data;
 using eshop.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace eshop.MVC.Extensions
+namespace eshop.API.Extensions
 {
     public static class IoCExtensions
     {

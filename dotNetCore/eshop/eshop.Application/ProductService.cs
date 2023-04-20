@@ -1,4 +1,5 @@
-﻿using eshop.Entities;
+﻿using eshop.Application.DTOs.Requests;
+using eshop.Entities;
 using eshop.Infrastructure.Repositories;
 
 namespace eshop.Application
@@ -20,6 +21,25 @@ namespace eshop.Application
             productRepository.Add(newProduct);
         }
 
+        public int CreateNewProduct(CreateProductRequest productRequest)
+        {
+            var product = new Product
+            {
+                CategoryId = productRequest.CategoryId,
+                CreatedDate = DateTime.Now,
+                Description = productRequest.Description,
+                DiscountRate = productRequest.DiscountRate,
+                ImageUrl = productRequest.ImageUrl,
+                Name = productRequest.Name,
+                Price = productRequest.Price,
+                Rating = productRequest.Rating
+
+            };
+
+            productRepository.Add(product);
+            return product.Id;
+        }
+
         public Product GetProduct(int id)
         {
             return productRepository.Get(id);
@@ -34,6 +54,11 @@ namespace eshop.Application
         {
             return productRepository.GetProductsByCategoryId(value);
 
+        }
+
+        public List<Product> SearchProducts(string name)
+        {
+            return productRepository.SearchProductByName(name).ToList();
         }
 
         public void UpdateExistingProduct(Product product)
