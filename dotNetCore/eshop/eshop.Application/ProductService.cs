@@ -40,6 +40,11 @@ namespace eshop.Application
             return product.Id;
         }
 
+        public void Delete(int id)
+        {
+            productRepository.Delete(id);
+        }
+
         public Product GetProduct(int id)
         {
             return productRepository.Get(id);
@@ -56,6 +61,11 @@ namespace eshop.Application
 
         }
 
+        public bool IsProductExists(int id)
+        {
+            return productRepository.ItExists(id);
+        }
+
         public List<Product> SearchProducts(string name)
         {
             return productRepository.SearchProductByName(name).ToList();
@@ -64,6 +74,25 @@ namespace eshop.Application
         public void UpdateExistingProduct(Product product)
         {
             productRepository.Update(product);
+        }
+
+        public void UpdateExistingProduct(UpdateProductRequest updateProductRequest)
+        {
+            var product = new Product
+            {
+                CategoryId = updateProductRequest.CategoryId,
+                Description = updateProductRequest.Description,
+                UpdatedDate = DateTime.UtcNow,
+                DiscountRate = updateProductRequest.DiscountRate,
+                ImageUrl = updateProductRequest.ImageUrl,
+                Id = updateProductRequest.Id,
+                Name = updateProductRequest.Name,
+                Price = updateProductRequest.Price,
+                Rating = updateProductRequest.Rating,
+            };
+
+            productRepository.Update(product);
+
         }
     }
 }

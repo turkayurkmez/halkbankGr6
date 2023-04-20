@@ -40,6 +40,11 @@ namespace eshop.Infrastructure.Repositories
             return products.Where(p => p.CategoryId == value).ToList();
         }
 
+        public bool ItExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Product> SearchProductByName(string name)
         {
             throw new NotImplementedException();

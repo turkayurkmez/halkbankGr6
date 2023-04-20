@@ -11,6 +11,7 @@ namespace eshop.Infrastructure.Repositories
         IList<T> GetAll();
         T Get(int id);
 
+        bool ItExists(int id);
 
     }
 }

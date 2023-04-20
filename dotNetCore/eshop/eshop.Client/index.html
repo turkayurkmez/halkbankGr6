@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="getProducts">Ürünleri Getir</button>
+    <ul id="products">
+
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('#getProducts').on('click', function () {
+
+
+                $.ajax({
+                    url: 'https://localhost:7297/api/Products',
+                    method: 'GET',
+                    success: function (data) {
+                        $.each(data, function (index, element) {
+                            let li = $('<li>' + element.name + '</li>')
+                            $('#products').append(li);
+                        })
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+
+            });
+        });
+    </script>
+</body>
+
+</html>

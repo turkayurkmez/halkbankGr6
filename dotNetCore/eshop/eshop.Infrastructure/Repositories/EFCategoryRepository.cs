@@ -32,6 +32,11 @@ namespace eshop.Infrastructure.Repositories
             return dbContext.Categories.ToList();
         }
 
+        public bool ItExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Category item)
         {
             throw new NotImplementedException();

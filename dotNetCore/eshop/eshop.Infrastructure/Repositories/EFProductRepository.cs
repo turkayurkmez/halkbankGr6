@@ -29,6 +29,7 @@ namespace eshop.Infrastructure.Repositories
         public Product Get(int id)
         {
             return dbContext.Products.FirstOrDefault(p => p.Id == id);
+
         }
 
         public IList<Product> GetAll()
@@ -39,6 +40,11 @@ namespace eshop.Infrastructure.Repositories
         public IEnumerable<Product> GetProductsByCategoryId(int value)
         {
             return dbContext.Products.Where(p => p.CategoryId == value).ToList();
+        }
+
+        public bool ItExists(int id)
+        {
+            return dbContext.Products.Any(p => p.Id == id);
         }
 
         public IEnumerable<Product> SearchProductByName(string name)

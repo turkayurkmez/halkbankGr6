@@ -34,6 +34,11 @@ namespace eshop.Infrastructure.Repositories
             return _categories;
         }
 
+        public bool ItExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Category item)
         {
             throw new NotImplementedException();
